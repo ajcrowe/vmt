@@ -2,34 +2,42 @@
 
 This tool allows easy creation, modification and deletion of versions from vagrant box metadata files. 
 
+This tool is not complete and requires additional functionality in relation to providers and modification of existing metadata.
 
 ## Install
 
 Run the build script
 
 ```
-# ./build
+./build
 ```
 
-Then copy the `vmt` binary to somewhere in your `$PATH`
+Then copy the `bin/vmt` binary to somewhere in your `$PATH`
 
 ##  Usage
 
 You can configure global parameters 
 
-### Box URL 
+#### Box URL 
 
 config: `box_url`
 
 envvar: `VMT_BOX_URL`
 
-### Box File Root
+#### Box File Root
 
 config: `box_file_root`
 
 envvar: `VMT_BOX_FILE_ROOT`
 
-These can live in a `.vmtrc` file in your home directory (see `vmtrc.sample`) 
+#### Default Provider
+
+config: `default_provider`
+
+envvar: `VMT_DEFAULT_PROVIDER`
+
+
+These live in a `.vmtrc` file in your home directory (see `vmtrc.sample`) 
 
 ### `vmt generate`
 
@@ -68,6 +76,7 @@ Params:
 --input, -i         file to read metadata from
 --output, -o        file to write metadata to
 --boxfile, -f       path to the box file
+--provider, -p      provider of the version
 ```
 
 ### `vmt version remove`
@@ -87,3 +96,10 @@ Params:
 ## Contributing
 
 Please feel free to modify and submit PRs.
+
+
+## ToDo
+
+* Allow for removal of specific providers in version
+* Add error checking for all input flags
+* Add ability to modify existing versions with addition providers
