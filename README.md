@@ -14,9 +14,9 @@ Run the build script
 
 Then copy the `bin/vmt` binary to somewhere in your `$PATH`
 
-##  Usage
+##  Configuration
 
-You can configure global parameters 
+You can configure a number of global parameters. These can live in a `.vmtrc` file in your home directory (see `vmtrc.sample`) or can be set with environment variables
 
 #### Box URL 
 
@@ -36,14 +36,13 @@ config: `default_provider`
 
 envvar: `VMT_DEFAULT_PROVIDER`
 
-
-These live in a `.vmtrc` file in your home directory (see `vmtrc.sample`) 
+## Commands
 
 ### `vmt generate`
 
 Description: Creates an initial metadata file
 
-Params:
+Flags:
 
 ```
 --description, -d       description
@@ -56,7 +55,7 @@ Params:
 
 Description: Lists the versions present in the specified metadata
 
-Params:
+Flags:
 
 ```
 --input, -i         file to read metadata from
@@ -66,7 +65,7 @@ Params:
 
 Description: Adds a new version to an existing json file
 
-Params:
+Flags:
 
 ```
 --quiet, -q         suppress output to stdout 
@@ -83,7 +82,7 @@ Params:
 
 Description: Removes a version from the specified metadata
 
-Params:
+Flags:
 
 ```
 --quiet, -q         suppress output to stdout
@@ -95,11 +94,11 @@ Params:
 
 ## Example
 
-Lets generate a new json file
+Lets generate a new json metadata file
 
 ```
-vmt generate -o example.json -d "Vagrant Example Box" -s "examplebox vagrant" -b "examplebox"
-cat example.json
+$ vmt generate -o example.json -d "Vagrant Example Box" -s "examplebox vagrant" -b "examplebox"
+$ cat example.json
 {
   "name": "examplebox",
   "description": "Vagrant Example Box",
@@ -111,8 +110,8 @@ cat example.json
 Now lets add our box as a version to this metdata. We'll create a fake box file to use
 
 ```
-touch examplebox-0.1.box
-vmt version add -i example.json -v 0.1 -f examplebox-0.1.box -d "Initial Version" -q
+$ touch examplebox-0.1.box
+$ vmt version add -i example.json -v 0.1 -f examplebox-0.1.box -d "Initial Version" -q
 cat example.json
 {
   "name": "examplebox",
@@ -140,7 +139,7 @@ cat example.json
 We can view a summary of the versions in the metadata with `version list`
 
 ```
-vmt version list -i example.json
+$ vmt version list -i example.json
 Version   Description       Status
 0.1       Initial Version   active
 ```
@@ -148,8 +147,8 @@ Version   Description       Status
 Finally we can remove the version
 
 ```
-vmt version remove -i example.json -v 0.1 -q
-cat example.json
+$ vmt version remove -i example.json -v 0.1 -q
+$ cat example.json
 {
   "name": "examplebox",
   "description": "Vagrant Example Box",
@@ -161,7 +160,6 @@ cat example.json
 ## Contributing
 
 Please feel free to modify and submit PRs.
-
 
 ## ToDo
 
