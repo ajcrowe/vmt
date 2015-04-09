@@ -1,0 +1,2 @@
+go get github.com/codegangsta/cli
+go build -v -o bin/vmt

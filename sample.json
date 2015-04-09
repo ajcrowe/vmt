@@ -1,0 +1,19 @@
+{
+	"description": "This is the official Ubuntu Server 64-bit 14.04 cloud image. This box always points to the `current` version. If you need a specific snapshot check out the [Vagrant section](http://cloud-images.ubuntu.com/vagrant/) of Ubuntu.com.",
+	"short_description": "Official Ubuntu Server 14.04 LTS (Trusty Tahr) builds",
+	"name": "ubuntu/trusty64",
+	"versions": [
+	{
+		"version": "14.04",
+		"status": "active",
+		"description_html": "<p>Initial Release</p> ",
+		"description_markdown": "Initial Release",
+		"providers": [
+		{
+			"name": "virtualbox",
+			"url": "https://atlas.hashicorp.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box"
+		}
+		]
+	}
+	]
+}
