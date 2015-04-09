@@ -51,7 +51,7 @@ const filechunk = 8192
 func generateCheckSum(filename string) string {
 	file, err := os.Open(filename)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error reading box file: %s", filename)
+		printError("Reading box file")
 		os.Exit(1)
 	}
 

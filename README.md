@@ -93,6 +93,71 @@ Params:
 --remove, -r        remove box file when deleting version
 ```
 
+## Example
+
+Lets generate a new json file
+
+```
+vmt generate -o example.json -d "Vagrant Example Box" -s "examplebox vagrant" -b "examplebox"
+cat example.json
+{
+  "name": "examplebox",
+  "description": "Vagrant Example Box",
+  "short_description": "examplebox vagrant",
+  "versions": null
+}
+```
+
+Now lets add our box as a version to this metdata. We'll create a fake box file to use
+
+```
+touch examplebox-0.1.box
+vmt version add -i example.json -v 0.1 -f examplebox-0.1.box -d "Initial Version" -q
+cat example.json
+{
+  "name": "examplebox",
+  "description": "Vagrant Example Box",
+  "short_description": "examplebox vagrant",
+  "versions": [
+    {
+      "version": "0.1",
+      "status": "active",
+      "description_html": "\u003cp\u003eInitial Version\u003c/p\u003e",
+      "description_markdown": "Initial Version",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "http://vagrantbox.example.com/examplebox-0.1.box",
+          "checksum_type": "sha1",
+          "checksum": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+        }
+      ]
+    }
+  ]
+}
+```
+
+We can view a summary of the versions in the metadata with `version list`
+
+```
+vmt version list -i example.json
+Version   Description       Status
+0.1       Initial Version   active
+```
+
+Finally we can remove the version
+
+```
+vmt version remove -i example.json -v 0.1 -q
+cat example.json
+{
+  "name": "examplebox",
+  "description": "Vagrant Example Box",
+  "short_description": "examplebox vagrant",
+  "versions": null
+}
+```
+
 ## Contributing
 
 Please feel free to modify and submit PRs.

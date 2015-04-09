@@ -68,6 +68,6 @@ func readMetaData(filename string) (md *Metadata) {
 }
 
 func writeMetaData(filename string, md *Metadata) {
-	jsondata, _ := json.Marshal(md)
+	jsondata, _ := json.MarshalIndent(md, "", "  ")
 	ioutil.WriteFile(filename, jsondata, 0644)
 }
